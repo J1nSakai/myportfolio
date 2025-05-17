@@ -2,12 +2,80 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>My Portfolio</title>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Projects</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">My Setup</a></li>
+        <li><button id="theme-toggle" class="theme-button"><!-- Sun icon will be loaded here by JS --></button></li>
+      </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section">
+      <div class="hero-content">
+        <h1>Hi! I'm <span class="name-accent1">Taimoor</span> <span class="name-accent2">Abrejo</span></h1>
+        <p class="tagline">I make your website smooth</p>
+        <p class="description">
+          A creative web developer and content creator, bridging design 
+          and code to craft captivating web experiences.
+        </p>
+      </div>
+      <div class="hero-image">
+        <!-- Placeholder for your image/illustration -->
+        <!-- You can add an <img> tag here later or use a background image in CSS -->
+        <img src="my_pic.jpg" alt="My Pic Illustration">
+      </div>
+    </header>
+
+    <!-- Technology Stack Section -->
+    <section class="tech-stack">
+      <div class="tech-row tech-row-1">
+        <div class="tech-item"><img src="./src/assets/react-icon.svg" alt="React"><span>React</span></div>
+        <div class="tech-item"><img src="./src/assets/tailwind-icon.svg" alt="Tailwind CSS"><span>Tailwind CSS</span></div>
+        <div class="tech-item"><img src="./src/assets/figma-icon.svg" alt="Figma"><span>Figma</span></div>
+        <!-- Duplicate for marquee effect -->
+        <div class="tech-item"><img src="./src/assets/react-icon.svg" alt="React"><span>React</span></div>
+        <div class="tech-item"><img src="./src/assets/tailwind-icon.svg" alt="Tailwind CSS"><span>Tailwind CSS</span></div>
+        <div class="tech-item"><img src="./src/assets/figma-icon.svg" alt="Figma"><span>Figma</span></div>
+      </div>
+      <div class="tech-row tech-row-2">
+        <div class="tech-item"><img src="./src/assets/javascript-icon.svg" alt="JavaScript"><span>JavaScript</span></div>
+        <div class="tech-item"><img src="./src/assets/html-icon.svg" alt="HTML"><span>HTML</span></div>
+        <div class="tech-item"><img src="./src/assets/css3-icon.svg" alt="CSS"><span>CSS</span></div>
+        <!-- Duplicate for marquee effect -->
+        <div class="tech-item"><img src="./src/assets/javascript-icon.svg" alt="JavaScript"><span>JavaScript</span></div>
+        <div class="tech-item"><img src="./src/assets/html-icon.svg" alt="HTML"><span>HTML</span></div>
+        <div class="tech-item"><img src="./src/assets/css3-icon.svg" alt="CSS"><span>CSS</span></div>
+      </div>
+      <div class="tech-row tech-row-3">
+        <div class="tech-item"><img src="./src/assets/flutter-icon.svg" alt="Flutter"><span>Flutter</span></div>
+        <div class="tech-item"><img src="./src/assets/firebase-icon.svg" alt="Firebase"><span>Firebase</span></div>
+        <!-- Duplicate for marquee effect -->
+        <div class="tech-item"><img src="./src/assets/flutter-icon.svg" alt="Flutter"><span>Flutter</span></div>
+        <div class="tech-item"><img src="./src/assets/firebase-icon.svg" alt="Firebase"><span>Firebase</span></div>
+      </div>
+    </section>
+
+    <script>
+      // Keep your existing script for the sun icon, but target the new button ID
+      fetch('src/assets/sun.svg') 
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('theme-toggle').innerHTML = data;
+        });
+    </script>
+    <!-- You might want to link your main.js if you plan to use it for other functionalities -->
+    <!-- <script type="module" src="/src/main.js"></script> --> 
   </body>
 </html>
