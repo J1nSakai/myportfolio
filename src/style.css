@@ -1,20 +1,30 @@
 :root {
   --background-color: #0c0c0c;
-  /* --background-color: #000000; This is perfect black */
+  --text-color: #ffffff;
+  --primary-accent-color: #ff00ff; /* Magenta for "Alaa" - adjust as needed */
+  --secondary-accent-color: #ffa500; /* Orange for "Alaff" - adjust as needed */
+  --nav-background-color: #000000;
+  --nav-border-color: #313131;
+  --nav-text-color: #ffffff;
+  --link-hover-color: #cccccc;
 }
 
 * {
-  padding: 0%;
-  margin: 0%;
+  padding: 0;
+  margin: 0;
   box-sizing: border-box;
 }
 
 html {
-  font-family: Outfit;
+  font-family: 'Outfit', sans-serif; /* Ensure sans-serif fallback */
+  scroll-behavior: smooth;
 }
 
 body {
   background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  overflow-x: hidden; /* To prevent horizontal scroll from marquee later */
 }
 
 button {
@@ -22,36 +32,203 @@ button {
   cursor: pointer;
 }
 
-nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  padding: 1rem calc(1rem + 2vw);
-  background-color: #000000;
-  border: solid 1.5px #313131;
-  border-radius: 2.5rem;
-  margin: 2rem auto;
-  width: fit-content;
+a {
+  color: var(--nav-text-color);
+  text-decoration: none;
+}
 
-  ul {
-    display: flex;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+a:hover {
+  color: var(--link-hover-color);
+}
+
+/* Navigation Bar Styling */
+.navbar {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0; /* Vertical padding, horizontal will be handled by ul width */
+  margin-bottom: 4rem; /* Add more space below navbar */
+  position: fixed; /* Fix the navbar at the top */
+  top: 0; /* Position at the top of the viewport */
+  left: 0; /* Align to the left edge */
+  width: 100%; /* Take full width */
+  z-index: 1000; /* Ensure navbar stays on top of other content */
+  background-color: transparent; /* Match the page background */
+}
+
+.nav-links {
+  display: flex;
+  align-items: center; /* Vertically align items in nav */
+  list-style-type: none;
+  background-color: var(--nav-background-color);
+  border: 1.5px solid var(--nav-border-color);
+  border-radius: 2.5rem; /* Rounded ends */
+  padding: 0.75rem 1.5rem; /* Padding inside the nav container */
+  width: fit-content; /* Make it wrap its content */
+  margin: 0 auto; /* Center the ul itself if navbar takes full width */
+}
+
+.nav-links li {
+  margin: 0 0.75rem; /* Spacing between nav items */
+}
+
+.nav-links li a {
+  display: block;
+  color: var(--nav-text-color);
+  padding: 0.5rem; /* Padding for each link for better clickability */
+  font-size: 1rem; /* Increased from 0.9rem */
+  white-space: nowrap; /* Prevent links from wrapping */
+}
+
+.theme-button {
+  background-color: transparent; /* Ensure no background */
+  border: none;
+  padding: 0.5rem; /* Match link padding */
+  display: flex; /* To center the SVG if it's smaller */
+  align-items: center;
+  justify-content: center;
+}
+
+/* Updated Sun Icon Styling - target the button */
+.theme-button svg {
+  display: block;
+  fill: yellow; /* Initial color, can be changed with theme */
+  width: 24px; /* Adjusted size */
+  height: 24px; /* Adjusted size */
+}
+
+/* Remove old nav and #sun-icon styles if they were separate */
+/* nav { ... } */
+/* #sun-icon svg { ... } */
+
+/* Hero Section Styling */
+.hero-section {
+  display: flex;
+  flex-direction: column; /* Stack columns vertically on smaller screens */
+  align-items: center;
+  justify-content: center;
+  padding: 2rem calc(1rem + 5vw); /* Responsive padding */
+  text-align: center; /* Center text by default for smaller screens */
+  min-height: 70vh; /* Give it some height */
+}
+
+.hero-text {
+  max-width: 600px; /* Limit width of text for readability */
+  margin-bottom: 2rem; /* Space between text and illustration on small screens */
+}
+
+.hero-text h1 {
+  font-size: calc(3rem + 2.5vw); /* Increased base size and vw factor */
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.hero-text .tagline {
+  font-size: calc(1.4rem + 0.6vw); /* Increased base size and vw factor */
+  color: var(--text-color); /* Or a slightly dimmer color if preferred */
+  margin-bottom: 1rem;
+}
+
+.hero-text .description {
+  font-size: calc(1rem + 0.3vw); /* Increased base size and vw factor */
+  color: var(--link-hover-color); /* Using a slightly dimmer color */
+  margin-bottom: 1.5rem;
+}
+
+.hero-text .name-part-1 {
+  color: var(--primary-accent-color);
+}
+
+.hero-text .name-part-2 {
+  color: var(--secondary-accent-color);
+}
+
+.hero-illustration {
+  max-width: 400px; /* Adjust as needed based on your illustration */
+  width: 100%;
+}
+
+.hero-illustration img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px; /* Optional: if you want rounded corners for the image */
+}
+
+/* Medium screens and up - side-by-side layout for hero section */
+@media (min-width: 768px) {
+  .hero-section {
+    flex-direction: row; /* Side-by-side */
+    justify-content: space-between; /* Space out text and illustration */
+    text-align: left; /* Align text to the left */
+    padding: 4rem calc(1rem + 5vw);
   }
 
-  li a {
-    display: block;
-    color: white;
-    text-decoration: none;
-    padding-right: 1rem;
+  .hero-text {
+    flex-basis: 55%; /* Give more space to text */
+    margin-bottom: 0;
+    margin-right: 2rem; /* Space between text and illustration */
+  }
+
+  .hero-illustration {
+    flex-basis: 40%; /* Remaining space for illustration */
   }
 }
 
-#sun-icon svg{
-  display: block;
-  fill: yellow !important;
-  width: 30px;
-  height: 30px;
+/* Tech Stack Section Styling */
+.tech-stack {
+  padding: 4rem 0;
+  overflow: hidden; /* Crucial for marquee effect to hide overflowing content */
+  position: relative;
+  width: 100%;
+}
+
+.tech-row {
+  display: flex;
+  width: max-content;
+  margin-bottom: 3rem; /* Space between rows */
+  
+  position: relative;
+}
+
+.tech-item {
+  display: flex;
+  align-items: center;
+  margin: 0 2.5rem; /* Spacing between items */
+  padding-left: 1rem 2.5rem;
+}
+
+.tech-item img {
+  height: 60px; /* Larger icons */
+  width: auto;
+  object-fit: contain;
+  margin-right: 10px; /* Add space between icon and text */
+}
+
+.tech-item span {
+  display: inline-block; /* Show the text instead of hiding it */
+  color: #ffffff; /* White text color */
+  font-size: 2rem; /* Adjusted font size */
+  white-space: nowrap; /* Prevent text from wrapping */
+  font-family: 'Montserrat';
+}
+
+/* Marquee Animations - Fixed for infinite loop effect */
+@keyframes marquee {
+  to { transform: translateX(-50%); } /* Move to left side of the screen */
+}
+
+/* Apply animations to the correct rows */
+.tech-row-1 {
+  animation: marquee 80s linear infinite;
+  justify-content: flex-start; /* Align items to the start */
+}
+
+.tech-row-2 {
+  animation: marquee 80s linear infinite;
+  animation-direction: reverse; /* Reverse direction for RTL effect */;
+  justify-content: flex-start; /* Align items to the start */
+}
+
+.tech-row-3 {
+  animation: marquee 80s linear infinite;
+  justify-content: flex-start; /* Align items to the start */
 }
