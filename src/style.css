@@ -111,6 +111,69 @@ a:hover {
   min-height: 70vh; /* Give it some height */
 }
 
+.hero-content {
+  max-width: 800px; /* Increased from 600px for more space */
+  margin-bottom: 2rem; /* Space between text and illustration on small screens */
+}
+
+.hero-content h1 {
+  font-size: calc(4rem + 3vw); /* Significantly increased from calc(3rem + 2.5vw) */
+  margin-bottom: 1rem; /* Increased from 0.5rem */
+  line-height: 1.2;
+}
+
+.hero-content .tagline {
+  font-size: calc(2rem + 0.8vw); /* Increased from calc(1.4rem + 0.6vw) */
+  color: var(--text-color);
+  margin-bottom: 1.5rem; /* Increased from 1rem */
+}
+
+.hero-content .description {
+  font-size: calc(1.2rem + 0.4vw); /* Increased from previous size */
+  line-height: 1.6;
+  max-width: 90%; /* Ensure it doesn't stretch too wide */
+  margin: 0 auto; /* Center it */
+}
+
+/* Make name accents stand out more */
+.name-accent1, .name-accent2 {
+  font-weight: 700;
+}
+
+/* Galaxy Gradient Animation for Name */
+.name-accent1 {
+  background-image: linear-gradient(
+    to right,
+    #8a2387, /* Deep purple */
+    #e94057, /* Pink/red */
+    #f27121, /* Orange */
+    #4b79cf, /* Blue */
+    #663399, /* Purple */
+    #2b5876  /* Deep blue */
+  );
+  background-size: 400% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: galaxy-gradient 5s ease infinite;
+}
+
+@keyframes galaxy-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.name-accent2 {
+  color: var(--secondary-accent-color);
+}
+
 .hero-text {
   max-width: 600px; /* Limit width of text for readability */
   margin-bottom: 2rem; /* Space between text and illustration on small screens */
@@ -122,14 +185,16 @@ a:hover {
   line-height: 1.2;
 }
 
-.hero-text .tagline {
+.hero-content .tagline {
   font-size: calc(1.4rem + 0.6vw); /* Increased base size and vw factor */
+  font-family: 'Montserrat';
   color: var(--text-color); /* Or a slightly dimmer color if preferred */
   margin-bottom: 1rem;
 }
 
-.hero-text .description {
+.hero-content .description {
   font-size: calc(1rem + 0.3vw); /* Increased base size and vw factor */
+  font-family: 'Montserrat';
   color: var(--link-hover-color); /* Using a slightly dimmer color */
   margin-bottom: 1.5rem;
 }
@@ -151,6 +216,12 @@ a:hover {
   width: 100%;
   height: auto;
   border-radius: 10px; /* Optional: if you want rounded corners for the image */
+}
+
+svg path {
+  stroke: white;
+  stroke-width: 8px;
+  fill: none;
 }
 
 /* Medium screens and up - side-by-side layout for hero section */
@@ -211,7 +282,7 @@ a:hover {
   font-family: 'Montserrat';
 }
 
-/* Marquee Animations - Fixed for infinite loop effect */
+/* Marquee Animation */
 @keyframes marquee {
   to { transform: translateX(-50%); } /* Move to left side of the screen */
 }
@@ -231,4 +302,340 @@ a:hover {
 .tech-row-3 {
   animation: marquee 80s linear infinite;
   justify-content: flex-start; /* Align items to the start */
+}
+
+.hero-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-image svg {
+  width: 100%;
+  max-width: 450px; /* Larger maximum size */
+  height: auto;
+}
+
+/* Even larger on desktop */
+@media (min-width: 768px) {
+  .hero-image svg {
+    max-width: 550px;
+  }
+}
+
+/* Changing Word Animation (for JS version) */
+.changing-word {
+  display: inline-block;
+  color: white;
+  font-weight: 700;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.letter {
+  display: inline-block;
+  transition: opacity 0.3s ease, filter 0.3s ease, transform 0.3s ease;
+}
+
+/* Description container with vertical line */
+.description-container {
+  display: flex;
+  align-items: stretch; /* Changed from flex-start to stretch */
+  margin-top: 1.5rem;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative; /* Add this */
+}
+
+/* Animated vertical line */
+.vertical-line {
+  width: 4px;
+  height: 0;
+  margin-right: 1rem;
+  margin-top: 0.5rem; /* Align with text */
+  background-image: linear-gradient(
+    to bottom,
+    #8a2387, /* Deep purple */
+    #e94057, /* Pink/red */
+    #f27121, /* Orange */
+    #4b79cf, /* Blue */
+    #663399, /* Purple */
+    #2b5876  /* Deep blue */
+  );
+  background-size: 100% 400%;
+  border-radius: 4px;
+  animation: line-grow 1.5s ease forwards, galaxy-gradient-vertical 15s ease infinite;
+  box-shadow: 0 0 10px rgba(138, 35, 135, 0.5), 0 0 20px rgba(233, 64, 87, 0.3);
+  /* Added glow effect that matches the gradient colors */
+}
+
+/* Animation for the line to grow */
+@keyframes line-grow {
+  from {
+    height: 0;
+  }
+  to {
+    height: 4rem; /* Set a specific height instead of 100% */
+  }
+}
+
+/* Vertical gradient animation */
+@keyframes galaxy-gradient-vertical {
+  0% {
+    background-position: 0% 0%;
+  }
+
+  50% {
+    background-position: 0% 100%;
+  }
+  
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+/* Adjust description styling */
+.description {
+  font-size: calc(1.2rem + 0.4vw);
+  line-height: 1.6;
+  flex: 1;
+}
+
+
+/* Projects Section Styling */
+.projects-section {
+  padding: 6rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 4rem;
+  position: relative;
+}
+
+.section-heading h2 {
+  font-size: calc(2rem + 1vw);
+  margin-bottom: 1rem;
+  position: relative;
+  display: inline-block;
+}
+
+.heading-underline {
+  height: 4px;
+  width: 80px;
+  margin: 0 auto;
+  background-image: linear-gradient(
+    to right,
+    #8a2387, /* Deep purple */
+    #e94057, /* Pink/red */
+    #f27121, /* Orange */
+    #4b79cf  /* Blue */
+  );
+  background-size: 300% 100%;
+  border-radius: 4px;
+  animation: galaxy-gradient 15s ease infinite;
+}
+
+.projects-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+.project-card {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(138, 35, 135, 0.2), 0 15px 12px rgba(233, 64, 87, 0.1);
+}
+
+.project-image {
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+}
+
+.project-image img {
+  display: flex;
+  width: auto;
+  height: fit-content;
+  transition: transform 0.5s ease;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.project-card:hover .project-image img {
+  transform: scale(1.05);
+}
+
+.project-content {
+  padding: 1.5rem;
+}
+
+.project-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.project-description {
+  color: var(--link-hover-color);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.tech-tag {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 0.4rem 0.8rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.tech-tag:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.project-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.project-link {
+  position: relative;
+  font-weight: 600;
+  transition: color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+.project-link .arrow {
+  margin-left: 0.3rem;
+  transition: transform 0.3s ease;
+}
+
+.project-link:hover {
+  color: #e94057; /* Pink/red from your gradient */
+}
+
+.project-link:hover .arrow {
+  transform: translateX(4px);
+}
+
+.projects-section-footer {
+  width: 100%;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  margin-top: 4rem;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: 'Montserrat';
+  font-size: calc(2.5rem + 1vw);
+  font-style: oblique;
+  font-weight: lighter;
+  /* animation: slide_in 2s ease-out; */
+
+  opacity: 0;
+  transform: translate(-100%);
+  transition: opacity 2s ease-out, transform 2s ease-out;
+}
+
+.star {
+  position: absolute;
+  background-color: white;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;
+  box-shadow: 0 0 6px 1px rgba(255, 255, 255, 0.8);
+  animation: star-fade 1.5s ease-out forwards;
+}
+
+/* Star animation */
+@keyframes star-fade {
+  0% {
+    opacity: 0.9;
+    transform: scale(0.3);
+  }
+  70% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+}
+
+#varchitect {
+  height: 200px;
+  width: auto;
+  align-items: center;
+  display: flex;
+  margin-top: 2.5rem;
+}
+
+/* Media query for larger screens */
+@media (min-width: 768px) {
+  .projects-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .project-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .project-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .project-description {
+    flex: 1;
+  }
+}
+
+@media (min-width: 1024px) {
+  .projects-section {
+    padding: 8rem 2rem;
+  }
+}
+
+@keyframes slide_in {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-in {
+  opacity: 1 !important;
+  transform: translateX(0) !important;
 }
