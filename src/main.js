@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
         path.getBoundingClientRect();
 
         path.style.transition = path.style.WebkitTransition =
-            'stroke-dashoffset 3s ease-in-out';
+            'stroke-dashoffset 4.5s ease-in-out';
         path.style.strokeDashoffset = '0';
     });
 
