@@ -73,69 +73,24 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 
-    // Scroll-based animation for projects section footer
-    // Star trail effect for projects section footer
-    function createStarTrail(element) {
-        // Get element position and dimensions
-        const rect = element.getBoundingClientRect();
-        const startX = rect.left;
-        const width = rect.width;
-        
-        // Create stars with staggered timing
-        for (let i = 0; i < 20; i++) { // Create 20 stars
-            setTimeout(() => {
-                // Calculate position (distribute along the text width)
-                const starX = startX + (width * (i / 20)) - 50; // Adjust starting position to be before text
-                const starY = rect.top + (Math.random() * rect.height);
-                
-                // Create star element
-                const star = document.createElement('div');
-                star.className = 'star';
-                star.style.left = `${starX}px`;
-                star.style.top = `${starY}px`;
-                
-                // Add some randomness to size and color
-                const size = 2 + Math.random() * 4;
-                star.style.width = `${size}px`;
-                star.style.height = `${size}px`;
-                
-                // Random color variations (whites, light blues, light purples)
-                const colors = [
-                    'rgba(255, 255, 255, 0.9)',
-                    'rgba(200, 220, 255, 0.9)',
-                    'rgba(220, 200, 255, 0.9)',
-                    'rgba(255, 220, 240, 0.9)'
-                ];
-                const randomColor = colors[Math.floor(Math.random() * colors.length)];
-                star.style.backgroundColor = randomColor;
-                star.style.boxShadow = `0 0 6px 1px ${randomColor}`;
-                
-                // Add to document
-                document.body.appendChild(star);
-                
-                // Remove star after animation completes
-                setTimeout(() => {
-                    document.body.removeChild(star);
-                }, 1500); // Match animation duration
-            }, i * 100); // Stagger star creation
-        }
-    }
-    
-    // Modify the Intersection Observer to trigger star trail
+   
+    // Update the Intersection Observer with better debugging
     const projectsFooter = document.querySelector('.projects-section-footer');
+    console.log('Projects footer element found:', projectsFooter);
     
-    // Create an Intersection Observer
     const footerObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            // If the element is in the viewport
+            console.log('Footer intersection:', entry.isIntersecting);
             if (entry.isIntersecting) {
-                // Add the animation class
+                console.log('Footer is visible, starting animation');
+                // Add the slide-in animation class
                 entry.target.classList.add('animate-in');
                 
-                // Create star trail effect after a small delay
+                // Create code animation effect after the slide-in starts
                 setTimeout(() => {
-                    createStarTrail(entry.target);
-                }, 200);
+                    console.log('Triggering code animation');
+                    createCodeAnimation(entry.target);
+                }, 800);
                 
                 // Stop observing once animation is triggered
                 footerObserver.unobserve(entry.target);
@@ -149,6 +104,69 @@ document.addEventListener('DOMContentLoaded', function() {
     // Start observing the footer element
     if (projectsFooter) {
         footerObserver.observe(projectsFooter);
+        console.log('Started observing footer');
+    } else {
+        console.error('Projects footer element not found!');
+    }
+
+    const contactForm = document.getElementById('contactForm');
+    
+    if (contactForm) {
+        // Load the EmailJS SDK
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';
+        script.async = true;
+        document.head.appendChild(script);
+        
+        script.onload = function() {
+            // Initialize EmailJS with your public key
+            emailjs.init("tmoaVOdaLXMSYhxUY"); // Replace with your actual public key
+        };
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(contactForm);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const message = formData.get('message');
+            
+            // Basic validation
+            if (!name || !email || !message) {
+                alert('Please fill in all fields.');
+                return;
+            }
+            
+            // Show loading state
+            const submitBtn = contactForm.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span>Sending...</span>';
+            submitBtn.disabled = true;
+            
+            // Send the email using EmailJS
+            emailjs.send(
+                "service_buq55uk", // Replace with your EmailJS service ID
+                "template_luoloab", // Replace with your EmailJS template ID
+                {
+                    name: name,
+                    email: email,
+                    message: message
+                }
+            ).then(function() {
+                // Success
+                alert('Thank you for your message! I\'ll get back to you soon.');
+                contactForm.reset();
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }, function(error) {
+                // Error
+                console.error('EmailJS error:', error);
+                alert('Sorry, there was an error sending your message. Please try again later.');
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            });
+        });
     }
 });
 
