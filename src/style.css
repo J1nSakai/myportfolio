@@ -24,6 +24,17 @@ body {
   overflow-x: hidden; /* To prevent horizontal scroll from marquee later */
 }
 
+body.preload .maindiv {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  visibility: hidden;
+}
+
+body:not(.preload) .maindiv {
+  opacity: 1;
+  visibility: visible;
+}
+
 button {
   all: unset;
   cursor: pointer;
@@ -43,8 +54,7 @@ a:hover {
   flex-direction: column; /* Stack columns vertically on smaller screens */
   align-items: center;
   justify-content: center;
-  padding: 2rem calc(1rem + 5vw); /* Responsive padding */
-  text-align: center; /* Center text by default for smaller screens */
+  padding: 2rem 1.4rem; /* Responsive padding */
   min-height: 70vh; /* Give it some height */
 }
 
@@ -57,10 +67,6 @@ a:hover {
 
 /* For smaller screens, we'll reorder elements */
 @media (max-width: 767px) {
-  .hero-content {
-    order: 1; /* First show the hero content (h1 and tagline) */
-  }
-  
   .hero-content h1,
   .hero-content .tagline {
     order: 1; /* Keep h1 and tagline at the top */
@@ -74,10 +80,6 @@ a:hover {
   
   .description-container {
     order: 3; /* Then show the description */
-  }
-  
-  .hero-image svg {
-    max-width: 280px; /* Smaller SVG on mobile */
   }
 }
 
@@ -182,13 +184,13 @@ a:hover {
 }
 
 .hero-content .tagline {
-  font-size: calc(1.4rem + 0.6vw); /* Increased base size and vw factor */
+  font-size: 1.4rem; /* Increased base size and vw factor */
   font-family: 'Montserrat';
   color: var(--text-color); /* Or a slightly dimmer color if preferred */
   margin-bottom: 1rem;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* Center on small screens */
+  justify-content: flex-start; /* Center on small screens */
 }
 
 @media (min-width: 768px) {

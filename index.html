@@ -11,7 +11,9 @@
     <link rel="shortcut icon" href="/the_logo.svg" type="image/x-icon">
     <script src="./src/main.js"></script>
   </head>
-  <body>
+
+
+  <body class="preload">
 
     <script>
       document.addEventListener('DOMContentLoaded', function() {
@@ -184,7 +186,48 @@
             });
         });
     }
+
+    // Trying to fix the hero-section responsiveness through JavaScript
+    const heroSection = document.querySelector('.hero-section');
+      const heroContent = document.querySelector('.hero-content');
+      const descriptionContainer = document.querySelector('.description-container');
+
+      // const descContainer = `<div class="description-container">
+      //     <div class="vertical-line"></div>
+      //     <p class="description">
+      //       An aspiring Frontend Developer with a passion for creating amazing interfaces
+      //     </p>
+      //   </div>`
+
+      if (window.innerWidth <= 768) {
+        heroContent.removeChild(descriptionContainer);
+        heroSection.appendChild(descriptionContainer);
+      }
+
+    document.body.classList.remove('preload');
 });
+
+    window.addEventListener('resize', function() {
+      // Trying to fix the hero-section responsiveness through JavaScript
+      const heroSection = document.querySelector('.hero-section');
+      const heroContent = document.querySelector('.hero-content');
+      const descriptionContainer = document.querySelector('.description-container');
+
+      if (window.innerWidth <= 768) {
+        if (heroContent.querySelector(":scope > .description-container")) {
+          heroContent.removeChild(descriptionContainer);
+          heroSection.appendChild(descriptionContainer);
+        }
+      } else {
+        // This checks for direct children, not nested
+        if (heroSection.querySelector(":scope > .description-container")) {
+          heroSection.removeChild(descriptionContainer);
+          heroContent.appendChild(descriptionContainer);
+        }
+      } 
+    });
+    
+
     </script>
     <!-- Navigation Bar -->
     <!-- <nav class="navbar">
@@ -196,7 +239,8 @@
       </ul>
     </nav> -->
 
-    <!-- Hero Section -->
+    <div class="maindiv">
+      <!-- Hero Section -->
     <header class="hero-section">
       <div class="hero-content">
         <h1>Hi! I'm <span class="name-accent1">Taimoor</span></h1>
@@ -204,14 +248,15 @@
         <div class="description-container">
           <div class="vertical-line"></div>
           <p class="description">
-            An aspiring Frontend Developer with a passion for creating amazing Interfaces
+            An aspiring Frontend Developer with a passion for creating amazing interfaces
           </p>
         </div>
+        
       </div>
+      
       <div class="hero-image">
         <!-- Placeholder for your image/illustration -->
         <!-- You can add an <img> tag here later or use a background image in CSS -->
-        
 <svg
  width="400pt" height="443pt" viewBox="0 0 300.000000 362.000000"
  preserveAspectRatio="xMidYMid meet">
@@ -825,5 +870,6 @@ m103 -323 c22 -46 47 -141 64 -240 3 -15 8 -26 12 -23 4 2 6 -9 3 -24 -4 -27
         </div>
       </div>
     </section>
+    </div>
   </body>
 </html>
