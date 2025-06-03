@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Taimoor | Frontend Developer</title>
     <link rel="shortcut icon" href="/the_logo.svg" type="image/x-icon">
-    <script src="./src/main.js"></script>
+    <script src="src/main.js"></script>
   </head>
 
 
@@ -200,8 +200,10 @@
       //   </div>`
 
       if (window.innerWidth <= 768) {
-        heroContent.removeChild(descriptionContainer);
-        heroSection.appendChild(descriptionContainer);
+        if (heroContent.querySelector(":scope > .description-container")) {
+          heroContent.removeChild(descriptionContainer);
+          heroSection.appendChild(descriptionContainer);
+        }
       }
 
     document.body.classList.remove('preload');
