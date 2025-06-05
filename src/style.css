@@ -661,11 +661,87 @@ svg path {
 }
 
 .contact-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  margin-top: 3rem;
-  align-items: start; /* Ensures items align to the top */
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
+
+
+.contact-text-and-socials {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+@media (max-width: 768px)  {
+  .contact-content {
+    flex-direction: column;
+  }
+
+  .contact-text-and-socials {
+    flex: none;
+  }
+}
+/* Socials styling */
+.socials {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 1rem;
+  min-height: max-content;
+}
+
+.socials a {
+  display: flex;
+  align-items: center;
+  justify-content: baseline;
+}
+
+.socials img {
+  height: 50px;
+  width: 50px;
+  margin-right: 10px;
+}
+
+.social-name {
+  font-size: 1.3rem;
+}
+
+@media (max-width: 768px) {
+  .socials {
+     flex-direction: row;
+     justify-content: center;
+     align-items: center;
+     gap: 1.5rem;
+   }
+
+   .socials img {
+     height: 40px;
+     width: 40px;
+   }
+ }
+
+@media (max-width: 426px) {
+  .socials {
+     flex-direction: row;
+     justify-content: center;
+     align-items: center;
+     gap: 0.5rem;
+   }
+
+   .socials img {
+     height: 40px;
+     width: 40px;
+   }
+
+  .social-name {
+     display: none;
+   }
 }
 
 .contact-info {
@@ -673,7 +749,6 @@ svg path {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  position: sticky;
   top: 6rem; /* Adjust based on your navbar height + some padding */
   align-self: start;
   height: fit-content;
@@ -699,6 +774,7 @@ svg path {
 
 /* Contact Form Styling */
 .contact-form-container {
+  flex: 1;
   background: rgba(255, 255, 255, 0.03);
   padding: 2rem;
   border-radius: 1rem;
@@ -800,7 +876,7 @@ svg path {
   .contact-info {
     position: static; /* Remove sticky positioning on smaller screens */
     align-self: center; /* Center align on smaller screens */
-    margin-bottom: 2rem; /* Add some space below */
+    margin-bottom: 1rem; /* Add some space below */
   }
   
   .contact-info h3 {
@@ -819,4 +895,8 @@ svg path {
     padding: 0.8rem 1.5rem;
     font-size: 1rem;
   }
+}
+
+#message {
+  resize: none;
 }
