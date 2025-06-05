@@ -708,6 +708,10 @@ svg path {
   margin-right: 10px;
 }
 
+#linkedin-svg {
+  scale: 1.2;
+}
+
 .social-name {
   font-size: 1.3rem;
 }
