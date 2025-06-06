@@ -51,22 +51,23 @@ a:hover {
 /* Hero Section Styling */
 .hero-section {
   display: flex;
-  flex-direction: column; /* Stack columns vertically on smaller screens */
+  flex-direction: row; /* Side-by-side */
   align-items: center;
-  justify-content: center;
-  padding: 2rem 1.4rem; /* Responsive padding */
-  min-height: 70vh; /* Give it some height */
+  justify-content: space-between; /* Space out text and illustration */
+  padding: 4rem calc(1rem + 5vw);
 }
 
 .hero-content {
-  max-width: 800px; /* Increased from 600px for more space */
   display: flex;
   flex-direction: column;
-  align-items: center;
+  margin-right: 2rem; /* Space between text and illustration */
+  align-items: flex-start; /* Align items to the left on larger screens */
+  font-family: 'Montserrat';
+  color: var(--link-hover-color); /* Using a slightly dimmer color */
 }
 
 /* For smaller screens, we'll reorder elements */
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .hero-content h1,
   .hero-content .tagline {
     order: 1; /* Keep h1 and tagline at the top */
@@ -84,33 +85,43 @@ a:hover {
 }
 
 /* Medium screens and up - side-by-side layout for hero section */
-@media (min-width: 768px) {
+@media (max-width: 768px) {
   .hero-section {
-    flex-direction: row; /* Side-by-side */
-    justify-content: space-between; /* Space out text and illustration */
-    text-align: left; /* Align text to the left */
-    padding: 4rem calc(1rem + 5vw);
+    display: flex;
+    flex-direction: column; /* Stack columns vertically on smaller screens */
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.4rem; /* Responsive padding */
+    min-height: 70vh; /* Give it some height */
   }
 
   .hero-content {
-    flex-basis: 55%; /* Give more space to text */
-    margin-bottom: 0;
-    margin-right: 2rem; /* Space between text and illustration */
-    align-items: flex-start; /* Align items to the left on larger screens */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
-  .hero-image {
-    flex-basis: 40%; /* Remaining space for illustration */
+  /* TODO: Correct this moving of text due to animation */
+  .hero-content p {
+    align-self: flex-start;
   }
-  
-  /* Make sure the description is visible on larger screens */
-  .description-container {
-    display: block;
+}
+
+@media (max-width: 426px) {
+  .hero-section {
+    display: flex;
+    flex-direction: column; /* Stack columns vertically on smaller screens */
+    align-items: left;
+    justify-content: left;
+    padding: 2rem; /* Responsive padding */
+    min-height: 70vh; /* Give it some height */
   }
-  
-  /* Remove the pseudo-element on larger screens */
-  .hero-section::after {
-    content: none;
+
+  .hero-content {
+    max-width: 800px; /* Increased from 600px for more space */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
 
@@ -120,21 +131,119 @@ a:hover {
   line-height: 1.2;
 }
 
-.hero-content .tagline {
-  font-size: calc(2rem + 0.8vw); /* Increased from calc(1.4rem + 0.6vw) */
-  color: var(--text-color);
-  margin-bottom: 1.5rem; /* Increased from 1rem */
+@media (max-width: 768px) {
+ .hero-content h1 {
+    font-size: 4rem;
+  }
 }
 
-.hero-content .description {
-  font-size: calc(1.2rem + 0.4vw); /* Increased from previous size */
+@media (max-width: 426px) {
+  .hero-content h1 {
+    align-self: flex-start;
+    font-size: 2rem;
+  }
+
+  .hero-content p {
+    align-self: flex-start;
+    font-size: 1.1rem;
+  }
+}
+
+/* Description container with vertical line */
+.description-container {
+  display: flex;
+  align-items: stretch; /* Changed from flex-start to stretch */
+  margin-top: 1.5rem;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative; /* Add this */
+}
+
+/* Animated vertical line */
+.vertical-line {
+  width: 4px;
+  height: 0;
+  margin-right: 1rem;
+  margin-top: 0.5rem; /* Align with text */
+  background-image: linear-gradient(
+    to bottom,
+    #8a2387, /* Deep purple */
+    #e94057, /* Pink/red */
+    #f27121, /* Orange */
+    #4b79cf, /* Blue */
+    #663399, /* Purple */
+    #2b5876  /* Deep blue */
+  );
+  background-size: 100% 400%;
+  border-radius: 4px;
+  animation: line-grow 1.5s ease forwards, galaxy-gradient-vertical 15s ease infinite;
+  box-shadow: 0 0 10px rgba(138, 35, 135, 0.5), 0 0 20px rgba(233, 64, 87, 0.3);
+  /* Added glow effect that matches the gradient colors */
+}
+
+/* Animation for the line to grow */
+@keyframes line-grow {
+  from {
+    height: 0;
+  }
+  to {
+    height: 4rem; /* Set a specific height instead of 100% */
+  }
+}
+
+/* line-grow animation for medium screens */
+@keyframes line-grow-med {
+  from {
+    height: 0;
+  }
+  to {
+    height: 3rem; /* Set a specific height instead of 100% */
+  }
+}
+
+/* Vertical gradient animation */
+@keyframes galaxy-gradient-vertical {
+  0% {
+    background-position: 0% 0%;
+  }
+
+  50% {
+    background-position: 0% 100%;
+  }
+  
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+/* Adjust description styling */
+.description {
+  font-size: calc(1rem + 0.3vw);
   line-height: 1.6;
-  max-width: 90%; /* Ensure it doesn't stretch too wide */
-  margin: 0 auto; /* Center it */
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .vertical-line {
+    animation: line-grow-med 1.5s ease forwards, galaxy-gradient-vertical 15s ease infinite;
+  }
+
+  .description {
+      font-size: calc(1.15rem + 0.3vw); /* Adjusted size for smaller screens */
+      color: var(--link-hover-color); /* Using a slightly dimmer color */
+  }
+}
+
+@media (max-width: 426px) {
+ .description {
+    font-size: calc(1rem + 0.3vw); /* Adjusted size for smaller screens */
+    color: var(--link-hover-color); /* Using a slightly dimmer color */
+  }
 }
 
 /* Make name accents stand out more */
-.name-accent1, .name-accent2 {
+.name-accent1 {
   font-weight: 700;
 }
 
@@ -168,23 +277,9 @@ a:hover {
   }
 }
 
-.name-accent2 {
-  color: var(--secondary-accent-color);
-}
 
-.hero-text {
-  max-width: 600px; /* Limit width of text for readability */
-  margin-bottom: 2rem; /* Space between text and illustration on small screens */
-}
-
-.hero-text h1 {
-  font-size: calc(3rem + 2.5vw); /* Increased base size and vw factor */
-  margin-bottom: 0.5rem;
-  line-height: 1.2;
-}
-
-.hero-content .tagline {
-  font-size: 1.4rem; /* Increased base size and vw factor */
+.tagline {
+  font-size: 2.2rem; /* Increased base size and vw factor */
   font-family: 'Montserrat';
   color: var(--text-color); /* Or a slightly dimmer color if preferred */
   margin-bottom: 1rem;
@@ -193,32 +288,13 @@ a:hover {
   justify-content: flex-start; /* Center on small screens */
 }
 
-@media (min-width: 768px) {
-  .hero-content .tagline {
-    justify-content: flex-start; /* Left-align on larger screens */
-  }
-}
+
 
 .changing-word {
   display: inline-block;
   min-width: 120px; /* Set a fixed minimum width that fits the longest word */
   text-align: left;
   margin-left: 0.5rem;
-}
-
-.hero-content .description {
-  font-size: calc(1rem + 0.3vw); /* Increased base size and vw factor */
-  font-family: 'Montserrat';
-  color: var(--link-hover-color); /* Using a slightly dimmer color */
-  margin-bottom: 1.5rem;
-}
-
-.hero-text .name-part-1 {
-  color: var(--primary-accent-color);
-}
-
-.hero-text .name-part-2 {
-  color: var(--secondary-accent-color);
 }
 
 .hero-illustration {
@@ -238,29 +314,9 @@ svg path {
   fill: none;
 }
 
-/* Medium screens and up - side-by-side layout for hero section */
-@media (min-width: 768px) {
-  .hero-section {
-    flex-direction: row; /* Side-by-side */
-    justify-content: space-between; /* Space out text and illustration */
-    text-align: left; /* Align text to the left */
-    padding: 4rem calc(1rem + 5vw);
-  }
-
-  .hero-text {
-    flex-basis: 55%; /* Give more space to text */
-    margin-bottom: 0;
-    margin-right: 2rem; /* Space between text and illustration */
-  }
-
-  .hero-illustration {
-    flex-basis: 40%; /* Remaining space for illustration */
-  }
-}
-
 /* Tech Stack Section Styling */
 .tech-stack {
-  padding: 4rem 0;
+  padding-top: 4rem;
   overflow: hidden; /* Crucial for marquee effect to hide overflowing content */
   position: relative;
   width: 100%;
@@ -369,70 +425,6 @@ svg path {
   transition: opacity 0.3s ease, filter 0.3s ease, transform 0.3s ease;
 }
 
-/* Description container with vertical line */
-.description-container {
-  display: flex;
-  align-items: stretch; /* Changed from flex-start to stretch */
-  margin-top: 1.5rem;
-  max-width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-  position: relative; /* Add this */
-}
-
-/* Animated vertical line */
-.vertical-line {
-  width: 4px;
-  height: 0;
-  margin-right: 1rem;
-  margin-top: 0.5rem; /* Align with text */
-  background-image: linear-gradient(
-    to bottom,
-    #8a2387, /* Deep purple */
-    #e94057, /* Pink/red */
-    #f27121, /* Orange */
-    #4b79cf, /* Blue */
-    #663399, /* Purple */
-    #2b5876  /* Deep blue */
-  );
-  background-size: 100% 400%;
-  border-radius: 4px;
-  animation: line-grow 1.5s ease forwards, galaxy-gradient-vertical 15s ease infinite;
-  box-shadow: 0 0 10px rgba(138, 35, 135, 0.5), 0 0 20px rgba(233, 64, 87, 0.3);
-  /* Added glow effect that matches the gradient colors */
-}
-
-/* Animation for the line to grow */
-@keyframes line-grow {
-  from {
-    height: 0;
-  }
-  to {
-    height: 4rem; /* Set a specific height instead of 100% */
-  }
-}
-
-/* Vertical gradient animation */
-@keyframes galaxy-gradient-vertical {
-  0% {
-    background-position: 0% 0%;
-  }
-
-  50% {
-    background-position: 0% 100%;
-  }
-  
-  100% {
-    background-position: 0% 0%;
-  }
-}
-
-/* Adjust description styling */
-.description {
-  font-size: calc(1.2rem + 0.4vw);
-  line-height: 1.6;
-  flex: 1;
-}
 
 
 /* Projects Section Styling */
@@ -884,7 +876,7 @@ svg path {
   }
   
   .contact-info h3 {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
 }
 
