@@ -118,10 +118,10 @@ a:hover {
   }
 
   .hero-content {
-    max-width: 800px; /* Increased from 600px for more space */
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-right: 0;
   }
 }
 
@@ -295,6 +295,7 @@ a:hover {
   min-width: 120px; /* Set a fixed minimum width that fits the longest word */
   text-align: left;
   margin-left: 0.5rem;
+  font-weight: 500;
 }
 
 .hero-illustration {
@@ -413,12 +414,7 @@ svg path {
 }
 
 /* Changing Word Animation (for JS version) */
-.changing-word {
-  display: inline-block;
-  color: white;
-  font-weight: 700;
-  transition: opacity 0.3s, transform 0.3s;
-}
+
 
 .letter {
   display: inline-block;
