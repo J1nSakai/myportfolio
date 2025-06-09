@@ -140,7 +140,8 @@ a:hover {
 @media (max-width: 426px) {
   .hero-content h1 {
     align-self: flex-start;
-    font-size: 2rem;
+    font-size: 2.5rem;
+    margin-bottom: 0;
   }
 
   .hero-content p {
@@ -239,6 +240,7 @@ a:hover {
  .description {
     font-size: calc(1rem + 0.3vw); /* Adjusted size for smaller screens */
     color: var(--link-hover-color); /* Using a slightly dimmer color */
+    margin-bottom: 0;
   }
 }
 
@@ -296,6 +298,16 @@ a:hover {
   text-align: left;
   margin-left: 0.5rem;
   font-weight: 500;
+}
+
+@media (max-width: 426px) {
+  .tagline {
+    margin-bottom: 0;
+  }
+
+  .changing-word {
+    margin-left: 0.2rem;
+  }
 }
 
 .hero-illustration {
@@ -702,6 +714,27 @@ svg path {
 
 .social-name {
   font-size: 1.3rem;
+  position: relative;
+  display: inline-block;
+  transition: color 0.3s ease;
+}
+
+.social-name::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: currentColor;
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-out;
+}
+
+.social-name:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
 
 @media (max-width: 768px) {
