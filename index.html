@@ -18,7 +18,7 @@
     <script>
       document.addEventListener('DOMContentLoaded', function() {
     // Changing word effect with letter-by-letter animation
-    const words = ['smooth', 'amazing', 'creative', 'beautiful'];
+    const words = ['smooth', 'amazing', 'creative', 'beautiful', 'fast', 'animated'];
     const changingWord = document.querySelector('.changing-word');
     let currentIndex = 0;
     
@@ -41,11 +41,12 @@
             
             // Animate each letter with a delay based on its position
             setTimeout(() => {
-                letterSpan.style.transition = 'opacity 0.3s ease, filter 0.3s ease, transform 0.3s ease';
                 letterSpan.style.opacity = '1';
                 letterSpan.style.filter = 'blur(0)';
                 letterSpan.style.transform = 'translateY(0)';
-            }, 100 * i); // Stagger the animation
+                
+                letterSpan.style.transition = 'opacity 0.3s ease, filter 0.3s ease, transform 0.3s ease';
+            }, 100 * i + 50); // Stagger the animation
         }
     }
     
@@ -86,7 +87,7 @@
         path.getBoundingClientRect();
 
         path.style.transition = path.style.WebkitTransition =
-            'stroke-dashoffset 4.5s ease-in-out';
+            'stroke-dashoffset 5.5s ease-in-out';
         path.style.strokeDashoffset = '0';
     });
 
@@ -879,18 +880,18 @@
           <div class="contact-form-container">
             <form class="contact-form" id="contactForm">
               <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" required>
+                <!-- <label for="name">Name</label> -->
+                <input type="text" placeholder="Name" id="name" name="name" required>
               </div>
               
               <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
+                <!-- <label for="email">Email</label> -->
+                <input type="email" placeholder="Email" id="email" name="email" required>
               </div>
               
               <div class="form-group">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
+                <!-- <label for="message">Message</label> -->
+                <textarea id="message" placeholder="Message" name="message" rows="5" required></textarea>
               </div>
               
               <button type="submit" class="submit-btn">
