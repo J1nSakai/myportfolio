@@ -2,12 +2,13 @@
 
 Welcome to my personal portfolio website — a fully responsive and visually engaging site built using **HTML**, **CSS**, and **JavaScript**. This portfolio showcases my work, skills, and contact details as a frontend developer.
 
-![Screenshot of Portfolio Website](screenshot.png) <!-- Replace # with actual image link -->
+![Screenshot](./public/screenshot.png)
+
 
 ## 🌐 Live Demo
 
 Check out the live version of my portfolio here:  
-👉 [https://your-demo-link.com](https://your-demo-link.com) <!-- Replace with your actual deployed link -->
+👉 [Portfolio Demo](https://myportfolio-three-hazel.vercel.app/) <!-- Replace with your actual deployed link -->
 
 ---
 
