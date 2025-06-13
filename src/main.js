@@ -1,12 +1,12 @@
-      document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     // Changing word effect with letter-by-letter animation
     const words = ['smooth', 'amazing', 'creative', 'beautiful', 'fast', 'animated'];
     const changingWord = document.querySelector('.changing-word');
     let currentIndex = 0;
-    
+
     // Set initial text
     changingWord.textContent = words[0];
-    
+
     // Function to animate letters one by one
     function animateWord(word) {
         changingWord.innerHTML = ''; // Clear current content
@@ -31,10 +31,10 @@
             }, 100 * i + 50); // Stagger the animation
         }
     }
-    
+
     // Initial animation
     animateWord(words[0]);
-    
+
     // Change word every 3 seconds
     setInterval(() => {
         // Get next word
@@ -74,11 +74,11 @@
     });
 
 
-   
+
     // Update the Intersection Observer with better debugging
     const projectsFooter = document.querySelector('.projects-section-footer');
     console.log('Projects footer element found:', projectsFooter);
-    
+
     const footerObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             console.log('Footer intersection:', entry.isIntersecting);
@@ -86,7 +86,7 @@
                 console.log('Footer is visible, starting animation');
                 // Add the slide-in animation class
                 entry.target.classList.add('animate-in');
-      
+        
                 // Stop observing once animation is triggered
                 footerObserver.unobserve(entry.target);
             }
@@ -95,7 +95,7 @@
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
     });
-    
+
     // Start observing the footer element
     if (projectsFooter) {
         footerObserver.observe(projectsFooter);
@@ -104,8 +104,9 @@
         console.error('Projects footer element not found!');
     }
 
+    // Contact form handling
     const contactForm = document.getElementById('contactForm');
-    
+
     if (contactForm) {
         // Load the EmailJS SDK
         const script = document.createElement('script');
@@ -141,8 +142,8 @@
             
             // Send the email using EmailJS
             emailjs.send(
-                "service_buq55uk", // Replace with your EmailJS service ID
-                "template_luoloab", // Replace with your EmailJS template ID
+                "service_buq55uk", // EmailJS service ID
+                "template_luoloab", // EmailJS template ID
                 {
                     name: name,
                     email: email,
@@ -164,69 +165,63 @@
         });
     }
 
-      // Trying to fix the hero-section responsiveness through JavaScript
-      const heroSection = document.querySelector('.hero-section');
-      const heroContent = document.querySelector('.hero-content');
-      const descriptionContainer = document.querySelector('.description-container');
+        // Trying to fix the hero-section responsiveness through JavaScript
+        const heroSection = document.querySelector('.hero-section');
+        const heroContent = document.querySelector('.hero-content');
+        const descriptionContainer = document.querySelector('.description-container');
 
-      const socials = document.querySelector('.socials');
-      const contactContent = document.querySelector('.contact-content');
-      const contactTextAndSocials = document.querySelector('.contact-text-and-socials');
-      // const descContainer = `<div class="description-container">
-      //     <div class="vertical-line"></div>
-      //     <p class="description">
-      //       An aspiring Frontend Developer with a passion for creating amazing interfaces
-      //     </p>
-      //   </div>`
+        const socials = document.querySelector('.socials');
+        const contactContent = document.querySelector('.contact-content');
+        const contactTextAndSocials = document.querySelector('.contact-text-and-socials');
 
-      if (window.innerWidth <= 768) {
+
+        if (window.innerWidth <= 768) {
         if (heroContent.querySelector(":scope > .description-container")) {
-          heroContent.removeChild(descriptionContainer);
-          heroSection.appendChild(descriptionContainer);
+            heroContent.removeChild(descriptionContainer);
+            heroSection.appendChild(descriptionContainer);
         }
 
         if (contactTextAndSocials.querySelector(":scope > .socials")) {
-          contactTextAndSocials.removeChild(socials);
-          contactContent.appendChild(socials);
+            contactTextAndSocials.removeChild(socials);
+            contactContent.appendChild(socials);
         }
 
-      }
+        }
 
     document.body.classList.remove('preload');
 });
 
-    window.addEventListener('resize', function() {
-      // Trying to fix the hero-section responsiveness through JavaScript
-      const heroSection = document.querySelector('.hero-section');
-      const heroContent = document.querySelector('.hero-content');
-      const descriptionContainer = document.querySelector('.description-container');
+window.addEventListener('resize', function() {
+    // Trying to fix the hero-section responsiveness through JavaScript
+    const heroSection = document.querySelector('.hero-section');
+    const heroContent = document.querySelector('.hero-content');
+    const descriptionContainer = document.querySelector('.description-container');
 
-      const socials = document.querySelector('.socials');
-      const contactContent = document.querySelector('.contact-content');
-      const contactTextAndSocials = document.querySelector('.contact-text-and-socials');
+    const socials = document.querySelector('.socials');
+    const contactContent = document.querySelector('.contact-content');
+    const contactTextAndSocials = document.querySelector('.contact-text-and-socials');
 
-      if (window.innerWidth <= 768) {
-        if (heroContent.querySelector(":scope > .description-container")) {
-          heroContent.removeChild(descriptionContainer);
-          heroSection.appendChild(descriptionContainer);
-        }
+    if (window.innerWidth <= 768) {
+    if (heroContent.querySelector(":scope > .description-container")) {
+        heroContent.removeChild(descriptionContainer);
+        heroSection.appendChild(descriptionContainer);
+    }
 
-        if (contactTextAndSocials.querySelector(":scope > .socials")) {
-          contactTextAndSocials.removeChild(socials);
-          contactContent.appendChild(socials);
-        }
+    if (contactTextAndSocials.querySelector(":scope > .socials")) {
+        contactTextAndSocials.removeChild(socials);
+        contactContent.appendChild(socials);
+    }
 
-      } else {
-        // This checks for direct children, not nested
-        if (heroSection.querySelector(":scope > .description-container")) {
-          heroSection.removeChild(descriptionContainer);
-          heroContent.appendChild(descriptionContainer);
-        }
+    } else {
+    // This checks for direct children, not nested
+    if (heroSection.querySelector(":scope > .description-container")) {
+        heroSection.removeChild(descriptionContainer);
+        heroContent.appendChild(descriptionContainer);
+    }
 
-        if (contactContent.querySelector(":scope >.socials")) {
-          contactContent.removeChild(socials);
-          contactTextAndSocials.appendChild(socials);
-        }
-      } 
-    });
-    
+    if (contactContent.querySelector(":scope >.socials")) {
+        contactContent.removeChild(socials);
+        contactTextAndSocials.appendChild(socials);
+    }
+    } 
+});

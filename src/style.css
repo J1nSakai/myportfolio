@@ -351,8 +351,6 @@ svg path {
 .tech-row {
   display: flex;
   width: max-content;
-  margin-bottom: 3rem; /* Space between rows */
-  
   position: relative;
 }
 
@@ -409,6 +407,7 @@ svg path {
 }
 
 .tech-row-2 {
+  margin: 4rem 0;
   animation: marquee 80s linear infinite;
   animation-direction: reverse; /* Reverse direction for RTL effect */;
   justify-content: flex-start; /* Align items to the start */
@@ -443,7 +442,7 @@ svg path {
 
 .letter {
   display: inline-block;
-  transition: opacity 0.3s ease, filter 0.3s ease, transform 0.3s ease;
+  transition: opacity 0.3s ease, filter 0.3s ease, transform 0.5s ease;
 }
 
 
@@ -486,21 +485,66 @@ svg path {
 
 .projects-container {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 3rem;
 }
 
 .project-card {
-  background-color: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  overflow: hidden;
+  /* background-color: rgba(255, 255, 255, 0.05); */
+  background-color: var(--background-color);
+  border-radius: 3px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
-.project-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 30px rgba(138, 35, 135, 0.2), 0 15px 12px rgba(233, 64, 87, 0.1);
+@property --deg {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: true;
+}
+
+.project-card::before,
+.project-card::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: conic-gradient(
+    from var(--deg) at center,
+    #00c3ff,
+    #4d0199,
+    #6300c3,
+    #00c3ff
+  );
+  border-radius: inherit;
+  z-index: -2;
+  padding: 1px;
+  animation: rotate 5s linear infinite;
+}
+
+.project-card::after {
+  filter: blur(1.5px);
+  transition: filter 0.3s ease, animation-duration 0.3s ease;
+}
+
+@keyframes rotate {
+  to {
+    --deg: 360deg;
+  }
+}
+
+.project-card:hover::before, 
+.project-card:hover::after {
+  /* transform: translateY(-10px); */
+  /* box-shadow: 0 10px 30px rgba(138, 35, 135, 0.2), 0 15px 12px rgba(233, 64, 87, 0.1); */
+  animation-duration: 2s;
+  filter: blur(3px);
+  transition: filter 0.3s ease, animation-duration 0.3s ease;
 }
 
 .project-image {
@@ -524,6 +568,9 @@ svg path {
 
 .project-content {
   padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .project-title {
@@ -536,6 +583,7 @@ svg path {
   color: var(--link-hover-color);
   margin-bottom: 1.5rem;
   line-height: 1.6;
+  flex: 1;
 }
 
 .project-tech {
@@ -614,25 +662,9 @@ svg path {
 }
 
 /* Media query for larger screens */
-@media (min-width: 768px) {
+@media (max-width: 768px) {
   .projects-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  .project-card {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .project-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .project-description {
-    flex: 1;
+    grid-template-columns: 1fr;
   }
 }
 
@@ -651,11 +683,6 @@ svg path {
     transform: translateX(0);
     opacity: 1;
   }
-}
-
-.animate-in {
-  opacity: 1 !important;
-  transform: translateX(0) !important;
 }
 
 /* Contact Section Styling */
