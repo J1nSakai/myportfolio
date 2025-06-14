@@ -54,7 +54,7 @@ a:hover {
   flex-direction: row; /* Side-by-side */
   align-items: center;
   justify-content: space-between; /* Space out text and illustration */
-  padding: 4rem calc(1rem + 5vw);
+  padding: 6rem calc(1rem + 4vw);
 }
 
 .hero-content {
@@ -135,6 +135,10 @@ a:hover {
  .hero-content h1 {
     font-size: 4rem;
   }
+
+  .hero-content br {
+    display: none;
+  }
 }
 
 @media (max-width: 426px) {
@@ -147,6 +151,10 @@ a:hover {
   .hero-content p {
     align-self: flex-start;
     font-size: 1.1rem;
+  }
+
+  .hero-content br {
+    display: none;
   }
 }
 
@@ -426,7 +434,7 @@ svg path {
 
 .hero-image svg {
   width: 100%;
-  max-width: 450px; /* Larger maximum size */
+  scale: 1.1;
   height: auto;
 }
 
