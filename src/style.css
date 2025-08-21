@@ -665,7 +665,15 @@ svg path {
   width: auto;
   align-items: center;
   display: flex;
-  margin-top: 2.5rem;
+  margin-top: 2rem;
+}
+
+#ai-code-reviewer-svg {
+  height: 200px;
+  width: auto;
+  align-items: center;
+  display: flex;
+  margin-top: 2rem;
 }
 
 /* Media query for larger screens */
