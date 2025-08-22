@@ -676,6 +676,16 @@ svg path {
   margin-top: 2rem;
 }
 
+@media (max-width: 426px) {
+  #url-shortner-svg {
+    height: 200px;
+    width: auto;
+    align-items: center;
+    display: flex;
+    margin-top: 2rem;
+  }
+}
+
 /* Media query for larger screens */
 @media (max-width: 768px) {
   .projects-container {
